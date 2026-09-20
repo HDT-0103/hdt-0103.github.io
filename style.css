@@ -1,0 +1,79 @@
+/* Bảng màu và chữ lấy đúng từ ứng dụng (app/lib/core/theme/tokens.dart)
+   để trang web và app nhìn ra cùng một sản phẩm. */
+:root {
+  --nen: #F4EDDE;
+  --mat: #FBF7EC;
+  --muc: #241F1A;
+  --muc-2: #5F564B;
+  --muc-3: #948A7B;
+  --vach: #DED2B9;
+  --nhan: #8A6B24;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--nen);
+  color: var(--muc);
+  font: 16px/1.7 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.khung { max-width: 720px; margin: 0 auto; padding: 0 22px; }
+
+h1, h2, h3 { font-family: Lora, Georgia, serif; font-weight: 600; line-height: 1.25; }
+h1 { font-size: 40px; margin: 0 0 10px; }
+h2 { font-size: 24px; margin: 44px 0 12px; }
+h3 { font-size: 19px; margin: 30px 0 8px; }
+
+a { color: var(--nhan); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.nhan-nho {
+  font: 600 12px/1 ui-monospace, 'SF Mono', Menlo, monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muc-3);
+}
+
+header { padding: 64px 0 8px; text-align: center; }
+header img { width: 132px; height: 132px; object-fit: contain; }
+header p.dan { font-size: 18px; color: var(--muc-2); margin: 0 auto; max-width: 34em; }
+
+.the {
+  background: var(--mat);
+  border: 1px solid var(--vach);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+.luoi { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 22px 0; }
+.luoi h3 { margin: 0 0 4px; font-size: 17px; }
+.luoi p { margin: 0; font-size: 14.5px; color: var(--muc-2); }
+
+table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14.5px; }
+th, td { border-bottom: 1px solid var(--vach); padding: 9px 10px; text-align: left; vertical-align: top; }
+th { color: var(--muc-3); font-weight: 600; }
+
+blockquote {
+  margin: 18px 0; padding: 12px 16px;
+  background: var(--mat); border-left: 3px solid var(--nhan);
+  border-radius: 0 8px 8px 0; color: var(--muc-2); font-size: 15px;
+}
+
+hr { border: 0; border-top: 1px solid var(--vach); margin: 40px 0; }
+
+footer {
+  margin: 64px 0 48px; padding-top: 22px;
+  border-top: 1px solid var(--vach);
+  font-size: 14px; color: var(--muc-3);
+}
+footer a { color: var(--muc-2); }
+
+/* Điện thoại: chữ tiêu đề nhỏ lại cho vừa màn hẹp. */
+@media (max-width: 560px) {
+  h1 { font-size: 30px; }
+  header { padding-top: 40px; }
+  .khung { padding: 0 18px; }
+  table { font-size: 13.5px; }
+}
