@@ -77,3 +77,136 @@ footer a { color: var(--muc-2); }
   .khung { padding: 0 18px; }
   table { font-size: 13.5px; }
 }
+
+/* ============================================================
+   Landing page — các khối thêm từ 20/09/2026
+   ============================================================ */
+
+/* --- Song ngữ ---------------------------------------------
+   Cả hai thứ tiếng nằm sẵn trong DOM, CSS quyết định hiện cái
+   nào. Cố ý làm vậy thay vì thay chữ bằng JS: bộ quét của
+   Google (và trình duyệt tắt JS) vẫn đọc được phần tiếng Anh,
+   mà hồ sơ OAuth lại dựa đúng vào phần đó. */
+:root[data-ngon-ngu="vi"] [lang="en"] { display: none; }
+:root[data-ngon-ngu="en"] [lang="vi"] { display: none; }
+
+.doi-tieng {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: flex-end; gap: 6px;
+  padding: 10px 22px;
+  background: color-mix(in srgb, var(--nen) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+}
+.doi-tieng button {
+  font: 600 12.5px/1 'Be Vietnam Pro', system-ui, sans-serif;
+  color: var(--muc-3);
+  background: none; border: 1px solid transparent; border-radius: 999px;
+  padding: 6px 12px; cursor: pointer;
+}
+.doi-tieng button:hover { color: var(--muc); }
+.doi-tieng button[aria-pressed="true"] {
+  color: var(--nhan); border-color: var(--vach); background: var(--mat);
+}
+
+/* --- Nút --------------------------------------------------- */
+.nut-hang { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0 10px; }
+.nut {
+  display: inline-block; text-decoration: none;
+  font-weight: 600; font-size: 15.5px;
+  padding: 13px 26px; border-radius: 10px;
+  border: 1px solid var(--vach);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.nut:hover { transform: translateY(-1px); }
+.nut-chinh {
+  background: var(--nhan); color: #FBF7EC; border-color: var(--nhan);
+  box-shadow: 0 1px 0 rgba(36,31,26,.12);
+}
+.nut-chinh:hover { box-shadow: 0 4px 14px rgba(138,107,36,.28); }
+.nut-phu { background: var(--mat); color: var(--muc); }
+.nut-to { font-size: 17px; padding: 17px 34px; margin: 6px 0 4px; }
+
+.ghi-nho { font-size: 13.5px; color: var(--muc-3); margin: 6px 0 0; }
+header .ghi-nho { text-align: center; }
+.phu { font-size: 14px; color: var(--muc-3); }
+
+/* --- Ảnh chụp màn hình -------------------------------------
+   Cuộn ngang trên máy hẹp thay vì co ảnh bé lại: ảnh điện
+   thoại mà thu nhỏ quá thì chữ trong ảnh thành vô nghĩa. */
+.bang-anh {
+  display: flex; gap: 16px; margin: 34px 0 8px;
+  overflow-x: auto; padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.bang-anh figure { margin: 0; flex: 0 0 auto; width: 232px; scroll-snap-align: center; }
+.bang-anh img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--vach); border-radius: 14px;
+  background: var(--mat);
+}
+.bang-anh figcaption {
+  font-size: 13px; color: var(--muc-3); margin-top: 9px; line-height: 1.5;
+}
+
+/* --- Hộp tải về -------------------------------------------- */
+.hop-tai {
+  background: var(--mat); border: 1px solid var(--vach);
+  border-radius: 14px; padding: 26px 24px; margin: 20px 0;
+  text-align: center;
+}
+.hop-tai .nhan-nho { margin: 0 0 12px; }
+.hop-tai details { margin-top: 18px; text-align: left; }
+
+/* --- Các bước cài ------------------------------------------ */
+.cac-buoc { list-style: none; counter-reset: buoc; padding: 0; margin: 26px 0; }
+.cac-buoc > li {
+  counter-increment: buoc;
+  position: relative;
+  padding: 0 0 4px 52px;
+  margin-bottom: 26px;
+}
+.cac-buoc > li::before {
+  content: counter(buoc);
+  position: absolute; left: 0; top: 2px;
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  font: 600 15px/1 Lora, Georgia, serif;
+  color: var(--nhan);
+  background: var(--mat);
+  border: 1px solid var(--vach); border-radius: 50%;
+}
+.cac-buoc h3 { margin: 4px 0 6px; font-size: 17.5px; }
+.cac-buoc p { margin: 0 0 8px; color: var(--muc-2); font-size: 15px; }
+
+code {
+  font: 13px/1.5 ui-monospace, 'SF Mono', Menlo, monospace;
+  background: var(--mat); border: 1px solid var(--vach);
+  border-radius: 5px; padding: 1px 6px;
+  /* break-all xén tên file giữa thân chữ ("...arm64.ap|k"), đọc ra
+     thành một tên khác. Để trình duyệt ngắt ở dấu gạch và dấu chấm
+     có sẵn; chỉ chuỗi dài quá khổ mới ngắt tuỳ ý. */
+  overflow-wrap: anywhere;
+}
+
+/* --- Hỏi đáp gập mở ---------------------------------------- */
+details {
+  background: var(--mat); border: 1px solid var(--vach);
+  border-radius: 10px; padding: 14px 18px; margin: 10px 0;
+}
+details[open] { padding-bottom: 6px; }
+summary {
+  cursor: pointer; font-weight: 600; font-size: 15px;
+  list-style-position: outside;
+}
+summary::marker { color: var(--muc-3); }
+details p { font-size: 14.5px; color: var(--muc-2); margin: 12px 0; }
+
+@media (max-width: 560px) {
+  .nut-to { font-size: 15.5px; padding: 15px 22px; }
+  .hop-tai { padding: 22px 16px; }
+  .cac-buoc > li { padding-left: 46px; }
+  /* Ảnh tràn hết bề ngang màn hình cho dễ vuốt. */
+  .bang-anh { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
+}

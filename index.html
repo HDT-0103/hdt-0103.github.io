@@ -1,16 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi" data-ngon-ngu="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lac Nien — Vietnamese lunar calendar app</title>
+<title>Lac Nien — Lịch âm dương Việt Nam</title>
+
 <!-- Thẻ xác minh quyền sở hữu tên miền của Google Search Console.
      Trước đây nó nằm một mình ở /privacy-policy/index.html, chiếm chỗ
      của trang chính sách thật — nên Google báo trang "does not have
      sufficient content". Đặt ở CẢ HAI trang để xác minh không mất dù
-     sau này có đổi trang nào. -->
+     sau này có đổi trang nào. ĐỪNG XOÁ. -->
 <meta name="google-site-verification" content="IIGp6_PbwCI12vjTiKh3ZAAD8ZFnAEpmFbbmMpyhZwM" />
-<meta name="description" content="Lac Nien (Lạc Niên) is a Vietnamese lunar–solar calendar app: lunar dates, auspicious hours, 41 Vietnamese holidays, death-anniversary reminders, and one illustrated landmark every day.">
+
+<meta name="description" content="Lạc Niên (Lac Nien) — ứng dụng lịch âm dương Việt Nam: ngày âm, giờ hoàng đạo, 41 ngày lễ, nhắc ngày giỗ theo âm lịch, và mỗi ngày một địa danh. Tải APK cho Android.">
 <link rel="icon" href="lac-nien.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,92 +21,431 @@
 </head>
 <body>
 
+<!-- Nút đổi ngôn ngữ. Cả hai thứ tiếng đều nằm sẵn trong DOM chứ không
+     tải thêm, để bộ quét của Google đọc được phần tiếng Anh dù trang
+     mặc định hiện tiếng Việt. -->
+<nav class="doi-tieng" aria-label="Ngôn ngữ / Language">
+  <button type="button" data-chon="vi" aria-pressed="true">Tiếng Việt</button>
+  <button type="button" data-chon="en" aria-pressed="false">English</button>
+</nav>
+
 <header class="khung">
-  <img src="lac-nien.png" alt="Lac Nien logo — a Lạc bird from the Đông Sơn bronze drum">
-  <p class="nhan-nho">Vietnamese lunar calendar</p>
+  <img src="lac-nien.png" alt="Lạc Niên — chim Lạc trên trống đồng Đông Sơn" width="132" height="132">
+  <p class="nhan-nho" lang="vi">Lịch âm dương Việt Nam</p>
+  <p class="nhan-nho" lang="en">Vietnamese lunar calendar</p>
   <h1>Lac Nien</h1>
-  <p class="dan">
+  <p class="dan" lang="vi">
+    Lịch âm dương dành cho người Việt: ngày âm tính theo đúng múi giờ Việt Nam,
+    ngày tốt giờ tốt, 41 ngày lễ, nhắc ngày giỗ theo âm lịch, và mỗi ngày
+    một địa danh kèm tranh vẽ tay.
+  </p>
+  <p class="dan" lang="en">
     A lunar–solar calendar built for Vietnamese people: lunar dates computed
     in Vietnam's own time zone, auspicious days and hours, 41 Vietnamese
     holidays, death-anniversary reminders, and one illustrated landmark
     every day.
   </p>
+
+  <p class="nut-hang">
+    <a class="nut nut-chinh" href="#tai-ve">
+      <span lang="vi">Tải về cho Android</span>
+      <span lang="en">Download for Android</span>
+    </a>
+    <a class="nut nut-phu" href="#huong-dan">
+      <span lang="vi">Hướng dẫn cài đặt</span>
+      <span lang="en">Install guide</span>
+    </a>
+  </p>
+  <p class="ghi-nho">
+    <span lang="vi">Miễn phí · Không quảng cáo · Android 7.0 trở lên · 25 MB</span>
+    <span lang="en">Free · No ads · Android 7.0 and above · 25 MB</span>
+  </p>
 </header>
 
 <main class="khung">
 
-  <h2>Purpose of the app</h2>
-  <p>
-    Lac Nien (Vietnamese: <i>Lạc Niên</i>) helps people in Vietnam follow the
-    lunar calendar in daily life — checking the lunar date, picking an
-    auspicious day for a wedding or a house-warming, remembering a family
-    death anniversary that falls on a lunar date, and learning about one
-    Vietnamese heritage site each day.
-  </p>
-  <p>
-    Vietnam computes its lunar calendar in its own time zone, which is why
-    Vietnamese Tết has fallen a full day apart from the Chinese New Year in
-    years such as 1985 and 2007. Lac Nien uses the Vietnamese algorithm, so
-    the dates match the printed almanacs people actually use.
-  </p>
-  <p>
-    The app works fully offline and does not require an account. Signing in
-    is optional and serves only to back up your saved collection.
-  </p>
+  <!-- ===================== ẢNH CHỤP ===================== -->
+  <section class="bang-anh" aria-label="Ảnh chụp màn hình / Screenshots">
+    <figure>
+      <img src="anh/lich.png" alt="Màn lịch tháng của Lạc Niên" width="540" height="1104" loading="lazy">
+      <figcaption lang="vi">Lịch tháng — ngày dương lớn, ngày âm nhỏ bên dưới</figcaption>
+      <figcaption lang="en">Month view — solar date large, lunar date beneath</figcaption>
+    </figure>
+    <figure>
+      <img src="anh/dia-danh.png" alt="Màn địa danh của Lạc Niên" width="540" height="1104" loading="lazy">
+      <figcaption lang="vi">Mỗi ngày một địa danh, kèm một câu chuyện ngắn</figcaption>
+      <figcaption lang="en">One landmark a day, with a short story</figcaption>
+    </figure>
+    <figure>
+      <img src="anh/tro-ly.png" alt="Màn trợ lý văn hoá của Lạc Niên" width="540" height="1104" loading="lazy">
+      <figcaption lang="vi">Trợ lý văn hoá — hỏi đáp về nơi đang xem</figcaption>
+      <figcaption lang="en">Culture assistant — ask about the place you're reading</figcaption>
+    </figure>
+  </section>
 
-  <h2>What the app does</h2>
+  <!-- ===================== MỤC ĐÍCH (Google OAuth đọc mục này) ===== -->
+  <h2 id="muc-dich">
+    <span lang="vi">Ứng dụng này để làm gì</span>
+    <span lang="en">Purpose of the app</span>
+  </h2>
+
+  <div lang="vi">
+    <p>
+      Lạc Niên (tiếng Anh: <i>Lac Nien</i>) giúp người Việt theo lịch âm trong
+      đời sống hằng ngày — xem ngày âm, chọn ngày lành cho việc cưới hỏi hay
+      động thổ, nhớ ngày giỗ trong nhà vốn tính theo âm lịch, và mỗi ngày biết
+      thêm một di sản của đất nước mình.
+    </p>
+    <p>
+      Việt Nam tính lịch âm theo múi giờ của riêng mình. Đó là lý do Tết Việt
+      Nam từng lệch hẳn một ngày với Tết Trung Quốc, như các năm 1985 và 2007.
+      Lạc Niên dùng đúng thuật toán Việt Nam, nên ngày tháng khớp với cuốn lịch
+      giấy mà mọi người vẫn treo trong nhà.
+    </p>
+    <p>
+      Ứng dụng chạy đầy đủ khi không có mạng và không bắt đăng nhập. Đăng nhập
+      là tuỳ chọn, chỉ để sao lưu bộ sưu tập của bạn.
+    </p>
+  </div>
+
+  <div lang="en">
+    <p>
+      Lac Nien (Vietnamese: <i>Lạc Niên</i>) helps people in Vietnam follow the
+      lunar calendar in daily life — checking the lunar date, picking an
+      auspicious day for a wedding or a house-warming, remembering a family
+      death anniversary that falls on a lunar date, and learning about one
+      Vietnamese heritage site each day.
+    </p>
+    <p>
+      Vietnam computes its lunar calendar in its own time zone, which is why
+      Vietnamese Tết has fallen a full day apart from the Chinese New Year in
+      years such as 1985 and 2007. Lac Nien uses the Vietnamese algorithm, so
+      the dates match the printed almanacs people actually use.
+    </p>
+    <p>
+      The app works fully offline and does not require an account. Signing in
+      is optional and serves only to back up your saved collection.
+    </p>
+  </div>
+
+  <!-- ===================== TÍNH NĂNG ===================== -->
+  <h2>
+    <span lang="vi">Ứng dụng làm được gì</span>
+    <span lang="en">What the app does</span>
+  </h2>
   <div class="luoi">
     <div class="the">
-      <h3>Lunar &amp; solar calendar</h3>
-      <p>Lunar dates, Can Chi sexagenary cycle, leap months, and the full
-         Vietnamese holiday list.</p>
+      <h3><span lang="vi">Lịch âm và lịch dương</span><span lang="en">Lunar &amp; solar calendar</span></h3>
+      <p lang="vi">Ngày âm, Can Chi, tháng nhuận, và đủ danh sách ngày lễ Việt Nam.</p>
+      <p lang="en">Lunar dates, Can Chi sexagenary cycle, leap months, and the full Vietnamese holiday list.</p>
     </div>
     <div class="the">
-      <h3>Auspicious days and hours</h3>
-      <p>Day stars, auspicious hours, and what is traditionally advised or
-         avoided on each day.</p>
+      <h3><span lang="vi">Ngày tốt, giờ tốt</span><span lang="en">Auspicious days and hours</span></h3>
+      <p lang="vi">Sao trực, giờ hoàng đạo, việc nên làm và việc nên kiêng của từng ngày.</p>
+      <p lang="en">Day stars, auspicious hours, and what is traditionally advised or avoided on each day.</p>
     </div>
     <div class="the">
-      <h3>Death anniversaries</h3>
-      <p>Stored by lunar date, so the app finds the correct solar date every
-         year on its own.</p>
+      <h3><span lang="vi">Ngày giỗ</span><span lang="en">Death anniversaries</span></h3>
+      <p lang="vi">Lưu theo ngày âm, nên năm nào ứng dụng cũng tự tìm ra đúng ngày dương.</p>
+      <p lang="en">Stored by lunar date, so the app finds the correct solar date every year on its own.</p>
     </div>
     <div class="the">
-      <h3>Notes and Google Calendar</h3>
-      <p>Personal notes stay on the device. If you connect Google Calendar,
-         your events appear beside the lunar dates.</p>
+      <h3><span lang="vi">Ghi chú và Google Calendar</span><span lang="en">Notes and Google Calendar</span></h3>
+      <p lang="vi">Ghi chú nằm trong máy. Nối Google Calendar thì sự kiện của bạn hiện cạnh ngày âm.</p>
+      <p lang="en">Personal notes stay on the device. If you connect Google Calendar, your events appear beside the lunar dates.</p>
     </div>
     <div class="the">
-      <h3>A landmark a day</h3>
-      <p>One Vietnamese heritage site each day, hand-illustrated, with a
-         short story.</p>
+      <h3><span lang="vi">Mỗi ngày một địa danh</span><span lang="en">A landmark a day</span></h3>
+      <p lang="vi">Một di sản Việt Nam mỗi ngày, tranh vẽ tay, kèm một câu chuyện ngắn.</p>
+      <p lang="en">One Vietnamese heritage site each day, hand-illustrated, with a short story.</p>
     </div>
     <div class="the">
-      <h3>Home-screen widget</h3>
-      <p>Today's solar and lunar date on the phone's home screen, updated
-         every midnight.</p>
+      <h3><span lang="vi">Ô xem nhanh</span><span lang="en">Home-screen widget</span></h3>
+      <p lang="vi">Ngày dương và ngày âm hôm nay ngay trên màn hình chính, tự đổi lúc nửa đêm.</p>
+      <p lang="en">Today's solar and lunar date on the phone's home screen, updated every midnight.</p>
     </div>
   </div>
 
-  <h2>Google Calendar integration</h2>
-  <p>
+  <!-- ===================== TẢI VỀ ===================== -->
+  <h2 id="tai-ve">
+    <span lang="vi">Tải về</span>
+    <span lang="en">Download</span>
+  </h2>
+
+  <div class="hop-tai">
+    <p class="nhan-nho">
+      <span lang="vi">Phiên bản 1.0.0 · Android</span>
+      <span lang="en">Version 1.0.0 · Android</span>
+    </p>
+    <a class="nut nut-chinh nut-to"
+       href="https://github.com/HDT-0103/hdt-0103.github.io/releases/download/v1.0.0/lac-nien-1.0.0-arm64.apk">
+      <span lang="vi">Tải Lạc Niên 1.0.0 &nbsp;·&nbsp; 25 MB</span>
+      <span lang="en">Download Lac Nien 1.0.0 &nbsp;·&nbsp; 25 MB</span>
+    </a>
+    <p class="ghi-nho" lang="vi">
+      Dùng cho gần như mọi điện thoại Android từ 2017 trở lại đây.
+    </p>
+    <p class="ghi-nho" lang="en">
+      Works on virtually every Android phone released since 2017.
+    </p>
+
+    <details>
+      <summary lang="vi">Máy báo “không cài được ứng dụng này”?</summary>
+      <summary lang="en">Phone says “app not installed”?</summary>
+      <p lang="vi">
+        Điện thoại đời cũ hơn dùng bản 32-bit:
+        <a href="https://github.com/HDT-0103/hdt-0103.github.io/releases/download/v1.0.0/lac-nien-1.0.0-arm32.apk">tải bản 32-bit (23 MB)</a>.
+        Chỉ tải bản này khi bản ở trên không cài được — nó chạy chậm hơn một chút
+        trên máy đời mới.
+      </p>
+      <p lang="en">
+        Older phones need the 32-bit build:
+        <a href="https://github.com/HDT-0103/hdt-0103.github.io/releases/download/v1.0.0/lac-nien-1.0.0-arm32.apk">download the 32-bit build (23 MB)</a>.
+        Only use this one if the button above fails — it runs slightly slower on
+        newer phones.
+      </p>
+    </details>
+  </div>
+
+  <blockquote lang="vi">
+    <b>Đây là bản chạy thử</b>, chưa lên cửa hàng ứng dụng. Vì thế điện thoại sẽ
+    hỏi vài câu trước khi cho cài — phần hướng dẫn ngay bên dưới đi qua từng
+    bước một.
+  </blockquote>
+  <blockquote lang="en">
+    <b>This is a test build</b>, not yet on an app store. Your phone will ask a
+    few questions before it installs — the guide below walks through every
+    step.
+  </blockquote>
+
+  <!-- ===================== HƯỚNG DẪN CÀI ===================== -->
+  <h2 id="huong-dan">
+    <span lang="vi">Cài đặt — từng bước một</span>
+    <span lang="en">Installing, step by step</span>
+  </h2>
+
+  <p lang="vi">
+    Mất khoảng hai phút. Làm trên chính chiếc điện thoại Android bạn muốn dùng,
+    không phải trên máy tính.
+  </p>
+  <p lang="en">
+    It takes about two minutes. Do this on the Android phone you want to use it
+    on, not on a computer.
+  </p>
+
+  <ol class="cac-buoc">
+    <li>
+      <h3><span lang="vi">Bấm nút tải ở trên</span><span lang="en">Tap the download button above</span></h3>
+      <p lang="vi">
+        Trình duyệt hiện câu hỏi đại ý “Tệp này có thể gây hại cho thiết bị của
+        bạn. Vẫn tải xuống?”. Đây là câu Android hỏi với <em>mọi</em> file APK
+        tải ngoài cửa hàng, không phải riêng Lạc Niên. Chọn
+        <b>Vẫn tải xuống</b> hoặc <b>OK</b>.
+      </p>
+      <p lang="en">
+        Your browser will warn something like “This type of file can harm your
+        device. Download anyway?”. Android shows this for <em>every</em> APK
+        downloaded outside an app store, not just Lac Nien. Choose
+        <b>Download anyway</b> or <b>OK</b>.
+      </p>
+    </li>
+
+    <li>
+      <h3><span lang="vi">Mở file vừa tải</span><span lang="en">Open the downloaded file</span></h3>
+      <p lang="vi">
+        Kéo thanh thông báo từ mép trên xuống rồi bấm vào dòng
+        <code>lac-nien-1.0.0-arm64.apk</code>. Nếu thông báo đã trôi mất, mở
+        ứng dụng <b>Tệp</b> (hoặc <b>Files</b>, <b>Quản lý tệp</b>) rồi vào thư
+        mục <b>Tải xuống</b> và bấm vào file đó.
+      </p>
+      <p lang="en">
+        Pull down the notification shade and tap
+        <code>lac-nien-1.0.0-arm64.apk</code>. If the notification is already
+        gone, open the <b>Files</b> app, go to the <b>Downloads</b> folder, and
+        tap the file there.
+      </p>
+    </li>
+
+    <li>
+      <h3><span lang="vi">Cho phép cài từ nguồn này</span><span lang="en">Allow installs from this source</span></h3>
+      <p lang="vi">
+        Lần đầu tiên, máy sẽ nói trình duyệt <em>chưa được phép cài ứng dụng</em>.
+        Bấm <b>Cài đặt</b> trong hộp thoại đó — máy mở thẳng tới đúng ô cần bật —
+        rồi gạt công tắc <b>Cho phép từ nguồn này</b>. Xong thì bấm nút
+        <b>Quay lại</b>.
+      </p>
+      <p lang="vi" class="phu">
+        Công tắc này chỉ cấp quyền cho riêng trình duyệt bạn đang dùng, không
+        mở toang cả máy. Bạn tắt lại được sau khi cài xong.
+      </p>
+      <p lang="en">
+        The first time, your phone will say the browser <em>is not allowed to
+        install apps</em>. Tap <b>Settings</b> in that dialog — it jumps straight
+        to the right switch — then turn on <b>Allow from this source</b> and
+        press <b>Back</b>.
+      </p>
+      <p lang="en" class="phu">
+        This grants permission to that one browser only, not to the whole phone.
+        You can turn it off again once the app is installed.
+      </p>
+    </li>
+
+    <li>
+      <h3><span lang="vi">Bấm Cài đặt</span><span lang="en">Tap Install</span></h3>
+      <p lang="vi">
+        Có thể máy hiện thêm bảng <b>Play Protect</b> nói rằng chưa nhận ra nhà
+        phát triển. Chọn <b>Vẫn cài đặt</b>. Chờ vài giây rồi bấm <b>Mở</b>.
+      </p>
+      <p lang="en">
+        You may also see a <b>Play Protect</b> panel saying the developer is
+        unrecognised. Choose <b>Install anyway</b>. Wait a few seconds, then tap
+        <b>Open</b>.
+      </p>
+    </li>
+
+    <li>
+      <h3><span lang="vi">Lần đầu mở ứng dụng</span><span lang="en">First run</span></h3>
+      <p lang="vi">
+        Ba màn giới thiệu ngắn, bấm <b>Bỏ qua</b> nếu muốn vào thẳng. Sau đó máy
+        hỏi có cho gửi thông báo không — đồng ý thì mỗi sáng bạn nhận một địa
+        danh mới, từ chối thì mọi phần khác vẫn chạy đủ.
+      </p>
+      <p lang="en">
+        Three short intro screens — tap <b>Skip</b> to go straight in. Then your
+        phone asks about notifications: allow it to get one landmark each
+        morning, or decline and everything else still works.
+      </p>
+    </li>
+
+    <li>
+      <h3><span lang="vi">Đặt ô xem nhanh (tuỳ chọn)</span><span lang="en">Add the widget (optional)</span></h3>
+      <p lang="vi">
+        Giữ tay vào chỗ trống trên màn hình chính → <b>Tiện ích</b> → tìm
+        <b>Lạc Niên</b> → kéo ra màn hình. Có hai cỡ, 4×2 và 4×3.
+      </p>
+      <p lang="en">
+        Press and hold an empty spot on the home screen → <b>Widgets</b> → find
+        <b>Lạc Niên</b> → drag it out. Two sizes are available, 4×2 and 4×3.
+      </p>
+    </li>
+  </ol>
+
+  <!-- ===================== HỎI ĐÁP ===================== -->
+  <h2>
+    <span lang="vi">Vài câu hay gặp</span>
+    <span lang="en">Common questions</span>
+  </h2>
+
+  <details>
+    <summary lang="vi">Vì sao Google hiện cảnh báo khi tôi bấm kết nối?</summary>
+    <summary lang="en">Why does Google warn me when I connect?</summary>
+    <p lang="vi">
+      Khi bạn bấm <b>Tiếp tục với Google</b> hoặc <b>Kết nối Google Calendar</b>,
+      màn hình của Google có thể hiện dòng
+      <i>“Google hasn't verified this app”</i>. Lạc Niên đang trong quá trình xác
+      minh với Google, và cảnh báo này xuất hiện với mọi ứng dụng chưa xong thủ
+      tục đó. Bấm <b>Advanced</b> (hoặc <b>Nâng cao</b>) rồi chọn dòng
+      <b>Go to Lac Nien</b> ở bên dưới. Xác minh xong thì cảnh báo tự biến mất.
+    </p>
+    <p lang="vi">
+      Không muốn kết nối Google cũng hoàn toàn được — ghi chú và ngày giỗ vẫn
+      lưu đầy đủ trong máy.
+    </p>
+    <p lang="en">
+      When you tap <b>Continue with Google</b> or <b>Connect Google Calendar</b>,
+      Google may show <i>“Google hasn't verified this app”</i>. Lac Nien is going
+      through Google's verification process, and this notice appears for every
+      app that has not finished it. Tap <b>Advanced</b>, then
+      <b>Go to Lac Nien</b>. The warning disappears once verification completes.
+    </p>
+    <p lang="en">
+      You can skip Google entirely — notes and death anniversaries are stored on
+      your device either way.
+    </p>
+  </details>
+
+  <details>
+    <summary lang="vi">Có ngày lại ghi “chưa có địa danh”?</summary>
+    <summary lang="en">Some days say “no landmark yet”?</summary>
+    <p lang="vi">
+      Đúng như thiết kế. Bộ 365 bức tranh đang được vẽ, và bài viết được thêm
+      dần <b>mà bạn không phải cài lại ứng dụng</b>. Ở bản thử này, nội dung phủ
+      từ 19/9 đến 30/9.
+    </p>
+    <p lang="en">
+      That is by design. The set of 365 illustrations is still being drawn, and
+      entries are added over time <b>without you reinstalling anything</b>. In
+      this test build, content covers 19–30 September.
+    </p>
+  </details>
+
+  <details>
+    <summary lang="vi">Ứng dụng có chạy khi mất mạng không?</summary>
+    <summary lang="en">Does it work offline?</summary>
+    <p lang="vi">
+      Có. Lịch âm, Can Chi, ngày tốt xấu, ngày lễ, ghi chú và ngày giỗ đều tính
+      ngay trong máy. Chỉ bài địa danh mới và trợ lý văn hoá mới cần mạng.
+    </p>
+    <p lang="en">
+      Yes. The lunar calendar, Can Chi, auspicious days, holidays, notes and
+      death anniversaries are all computed on the device. Only new landmark
+      entries and the culture assistant need a connection.
+    </p>
+  </details>
+
+  <details>
+    <summary lang="vi">Gỡ ứng dụng thế nào?</summary>
+    <summary lang="en">How do I uninstall it?</summary>
+    <p lang="vi">
+      Giữ tay vào biểu tượng <b>Lạc Niên</b> → <b>Gỡ cài đặt</b>. Mọi dữ liệu
+      trong máy mất theo. Nếu bạn có tài khoản, vào <b>Thêm → Tài khoản → Xoá
+      tài khoản</b> trước khi gỡ để xoá luôn phần lưu trên máy chủ.
+    </p>
+    <p lang="en">
+      Press and hold the <b>Lạc Niên</b> icon → <b>Uninstall</b>. All on-device
+      data goes with it. If you created an account, go to
+      <b>More → Account → Delete account</b> before uninstalling to remove the
+      server-side copy too.
+    </p>
+  </details>
+
+  <!-- ===================== GOOGLE CALENDAR (Google OAuth đọc mục này) === -->
+  <h2 id="google-calendar">
+    <span lang="vi">Về phần nối với Google Calendar</span>
+    <span lang="en">Google Calendar integration</span>
+  </h2>
+
+  <p lang="vi">
+    Nối Google Calendar hoàn toàn là tuỳ chọn. Khi bạn chọn nối, ứng dụng xin
+    đúng một quyền, <code>https://www.googleapis.com/auth/calendar.events</code>,
+    và dùng nó cho đúng hai việc:
+  </p>
+  <p lang="en">
     Connecting Google Calendar is entirely optional. When you choose to
     connect, the app requests a single scope,
     <code>https://www.googleapis.com/auth/calendar.events</code>, and uses it
     for exactly two things:
   </p>
-  <table>
-    <tr>
-      <th>Read your events</th>
-      <td>To display your appointments alongside the lunar calendar, on your
-          device.</td>
-    </tr>
-    <tr>
-      <th>Create and delete events</th>
-      <td>Only the events you yourself create or delete inside the app.</td>
-    </tr>
+
+  <table lang="vi">
+    <tr><th>Đọc sự kiện của bạn</th><td>Để hiện lịch hẹn cạnh ngày âm, ngay trên máy bạn.</td></tr>
+    <tr><th>Tạo và xoá sự kiện</th><td>Chỉ những sự kiện do chính bạn tạo hoặc xoá trong ứng dụng.</td></tr>
   </table>
-  <p>
+  <table lang="en">
+    <tr><th>Read your events</th><td>To display your appointments alongside the lunar calendar, on your device.</td></tr>
+    <tr><th>Create and delete events</th><td>Only the events you yourself create or delete inside the app.</td></tr>
+  </table>
+
+  <p lang="vi">
+    Sự kiện lịch của bạn được đọc và xử lý <b>ngay trên máy</b>. Chúng không bao
+    giờ được sao lên máy chủ của chúng tôi và không chia sẻ với bên thứ ba nào.
+    Bạn thu hồi quyền bất cứ lúc nào trong phần Cài đặt của ứng dụng hoặc ở
+    trang quyền của Tài khoản Google. Việc sử dụng và chuyển giao thông tin nhận
+    từ Google API tuân theo
+    <a href="https://developers.google.com/terms/api-services-user-data-policy">Google
+    API Services User Data Policy</a>, bao gồm cả các yêu cầu Limited Use.
+  </p>
+  <p lang="en">
     Your calendar events are read and processed <b>locally on your device</b>.
     They are never copied to our servers and never shared with any third
     party. You can revoke access at any time in the app's settings or from
@@ -115,20 +456,36 @@
   </p>
 
   <blockquote>
-    Full details of what we collect, what we never collect, and how to delete
-    your data are in the <a href="privacy-policy/">Privacy Policy</a>.
+    <span lang="vi">
+      Chi tiết đầy đủ về những gì chúng tôi thu thập, những gì không bao giờ thu
+      thập, và cách xoá dữ liệu của bạn nằm ở
+      <a href="privacy-policy/">Chính sách quyền riêng tư</a>.
+    </span>
+    <span lang="en">
+      Full details of what we collect, what we never collect, and how to delete
+      your data are in the <a href="privacy-policy/">Privacy Policy</a>.
+    </span>
   </blockquote>
 
-  <h2>Availability</h2>
+  <!-- ===================== LIÊN HỆ ===================== -->
+  <h2>
+    <span lang="vi">Liên hệ</span>
+    <span lang="en">Contact</span>
+  </h2>
   <p>
-    Lac Nien runs on Android 7.0 and above, in Vietnamese and English. It
-    contains no advertising, and we do not sell or share your data.
-  </p>
-
-  <h2>Contact</h2>
-  <p>
-    Developer: Ngô Hồ Minh Ngọc<br>
+    <span lang="vi">Nhà phát triển:</span><span lang="en">Developer:</span>
+    Ngô Hồ Minh Ngọc<br>
     Email: <a href="mailto:ngohominhngoc121@gmail.com">ngohominhngoc121@gmail.com</a>
+  </p>
+  <p class="ghi-nho">
+    <span lang="vi">
+      Gặp lỗi hay thấy chỗ nào khó dùng? Chụp màn hình gửi email giúp — bản thử
+      này tồn tại chính là để nghe những điều đó.
+    </span>
+    <span lang="en">
+      Found a bug, or something confusing? Send a screenshot by email — that is
+      exactly what this test build is for.
+    </span>
   </p>
 
 </main>
@@ -139,6 +496,37 @@
   </p>
   <p>© 2026 Ngô Hồ Minh Ngọc. All rights reserved.</p>
 </footer>
+
+<script>
+// Đổi ngôn ngữ bằng một thuộc tính trên <html>; phần ẩn/hiện do CSS lo.
+// Làm cách này thay vì thay chữ bằng JS để trang vẫn đọc được đầy đủ cả
+// hai thứ tiếng khi JS không chạy — bộ quét của Google là một trường hợp
+// như vậy.
+(function () {
+  var goc = document.documentElement;
+  var nut = document.querySelectorAll('.doi-tieng button');
+
+  function dat(ma) {
+    goc.setAttribute('data-ngon-ngu', ma);
+    goc.setAttribute('lang', ma);
+    nut.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.chon === ma));
+    });
+    try { localStorage.setItem('lac-nien-ngon-ngu', ma); } catch (e) {}
+  }
+
+  nut.forEach(function (b) {
+    b.addEventListener('click', function () { dat(b.dataset.chon); });
+  });
+
+  var luu;
+  try { luu = localStorage.getItem('lac-nien-ngon-ngu'); } catch (e) {}
+  // Người dùng đã chọn thì theo họ; chưa chọn thì đoán từ ngôn ngữ trình
+  // duyệt, và mặc định tiếng Việt vì đây là ứng dụng cho người Việt.
+  if (luu === 'vi' || luu === 'en') dat(luu);
+  else if (!(navigator.language || '').toLowerCase().startsWith('vi')) dat('en');
+})();
+</script>
 
 </body>
 </html>
