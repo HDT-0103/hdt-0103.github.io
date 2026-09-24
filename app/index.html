@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <!-- Thay bằng --base-href lúc build: bản phát hành nằm ở /app/. -->
+  <base href="/app/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Lịch âm dương Việt Nam: ngày âm, ngày tốt giờ tốt, 41 ngày lễ kèm hiệu ứng riêng, và mỗi ngày một địa danh.">
+  <meta name="theme-color" content="#F4EDDE">
+
+  <!-- iPhone: thêm vào màn hình chính. `default` cho thanh trạng thái
+       trong suốt trên nền kem; `black` mặc định của Flutter trông như
+       một dải đen dán lên đầu màn. -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Lạc Niên">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Lạc Niên</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+  <!-- Xem sw.js: Flutter không còn tự cache để chạy khi mất mạng. -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
